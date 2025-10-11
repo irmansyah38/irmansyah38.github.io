@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV - Irmansyah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        box-sizing: border-box;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+      }
+
+      .skill-bar {
+        transition: width 1s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="h-full bg-blue-50 font-sans">
+    <div class="min-h-full">
+      <!-- Header Section -->
+      <header class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <!-- Profile Photo -->
+            <div
+              class="w-32 h-32 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg overflow-hidden"
+            >
+              <img src="maman-01.jpeg" alt="" class="" />
+            </div>
+
+            <!-- Personal Info -->
+            <div class="text-center md:text-left flex-1">
+              <h1 class="text-4xl font-bold text-gray-800 mb-2">Irmansyah</h1>
+              <h2 class="text-xl text-indigo-600 mb-4">
+                IoT Engginer & Web Developer
+              </h2>
+              <div
+                class="flex flex-wrap justify-center md:justify-start gap-4 text-gray-600"
+              >
+                <div class="flex items-center gap-2">
+                  <span>📧</span>
+                  <span>irmansya146@gmail.com</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>📱</span>
+                  <span>+62 898-9540-299</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span>📍</span>
+                  <span>Bogor, Indonesia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="max-w-6xl mx-auto px-6 py-8">
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Left Column -->
+          <div class="md:col-span-1 space-y-6">
+            <!-- About Me -->
+            <section
+              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
+            >
+              <h3
+                class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-200 pb-2"
+              >
+                Tentang Saya
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Fresh graduate dengan ketertarikan di bidang Internet of Things
+                (IoT) dan pengembangan web. Memiliki kemampuan dalam pemrograman
+                mikrokontroler, integrasi sensor, serta pengembangan web
+                berbasis API. Terbiasa bekerja dengan teknologi terkini dan
+                berorientasi pada pengembangan sistem yang efisien dan
+                terhubung.
+              </p>
+            </section>
+
+            <!-- Skills -->
+            <section
+              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
+            >
+              <h3
+                class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-200 pb-2"
+              >
+                Keahlian
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">C++</span>
+                    <span class="text-sm text-gray-500">85%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="skill-bar bg-indigo-600 h-2 rounded-full"
+                      style="width: 85%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">PHP</span>
+                    <span class="text-sm text-gray-500">80%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="skill-bar bg-indigo-600 h-2 rounded-full"
+                      style="width: 80%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700"
+                      >JavaScript</span
+                    >
+                    <span class="text-sm text-gray-500">80%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="skill-bar bg-indigo-600 h-2 rounded-full"
+                      style="width: 80%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700"
+                      >Python</span
+                    >
+                    <span class="text-sm text-gray-500">70%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="skill-bar bg-indigo-600 h-2 rounded-full"
+                      style="width: 70%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700"
+                      >Bootstrap</span
+                    >
+                    <span class="text-sm text-gray-500">80%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="skill-bar bg-indigo-600 h-2 rounded-full"
+                      style="width: 80%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Languages -->
+            <section
+              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
+            >
+              <h3
+                class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-200 pb-2"
+              >
+                Bahasa
+              </h3>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-700">Bahasa Indonesia</span>
+                  <span class="text-indigo-600 font-medium">Native</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-700">English</span>
+                  <span class="text-indigo-600 font-medium">Fluent</span>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Right Column -->
+          <div class="md:col-span-2 space-y-6">
+            <!-- Experience -->
+            <section
+              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
+            >
+              <h3
+                class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-200 pb-2"
+              >
+                Pengalaman Proyek
+              </h3>
+              <div class="space-y-6">
+                <div class="border-l-4 border-indigo-500 pl-4">
+                  <h4 class="text-lg font-semibold text-gray-800">
+                    Sistem Keamanan Rumah Menggunakan Notifikasi Telegram dan
+                    SMS | 2025
+                  </h4>
+                  <p class="mt-2 text-gray-600 space-y-1">
+                    Merancang dan mengembangkan, sistem keamanan rumah berbasis
+                    IoT menggunakan ESP32-CAM, sensor RCWL, sensor PIR, dan
+                    modul SIM800L. Sistem ini mampu mendeteksi gerakan secara
+                    otomatis, mengambil gambar melalui kamera, serta mengirimkan
+                    notifikasi ke Telegram dan SMS secara real-time. Proyek ini
+                    bertujuan meningkatkan keamanan rumah dengan solusi yang
+                    efisien, terjangkau, dan mudah diimplementasikan.
+                  </p>
+                </div>
+                <div class="border-l-4 border-indigo-500 pl-4">
+                  <h4 class="text-lg font-semibold text-gray-800">
+                    Hy-Scape: Smart Aquacapes dengan Kontrol Suhu, Pengatur pH,
+                    dan Pakan Otomatis | 2024
+                  </h4>
+                  <ul class="mt-2 text-gray-600 space-y-1">
+                    <li>• Mengembangkan program utama sistem.</li>
+                    <li>
+                      • Merancang website untuk input Chat ID dan Token Telegram
+                      guna mendukung notifikasi otomatis.
+                    </li>
+                  </ul>
+                </div>
+                <div class="border-l-4 border-indigo-500 pl-4">
+                  <h4 class="text-lg font-semibold text-gray-800">
+                    ETREKPASS : Curug Cikoneng Online Marketplace and Ticket
+                    Scanning System | 2024
+                  </h4>
+                  <ul class="mt-2 text-gray-600 space-y-1">
+                    <li>
+                      • Membuat website untuk mendukung proses pembelian serta
+                    </li>
+                    <li>
+                      • menyediakan API untuk integrasi dengan alat pemindai
+                    </li>
+                    <li>
+                      • Mengintegrasikan API yang telah dibuat dengan perangkat
+                      pemindai yang dikembangkan.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- Education -->
+            <section
+              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
+            >
+              <h3
+                class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-200 pb-2"
+              >
+                Pendidikan
+              </h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-green-500 pl-4">
+                  <h4 class="text-lg font-semibold text-gray-800">
+                    D4 Teknik Rekayasa Komputer
+                  </h4>
+                  <p class="text-green-600 font-medium">
+                    Institut Pertanian Bogor | 2021 - 2025
+                  </p>
+                  <p class="text-gray-600 mt-1">IPK: 3.44/4.00</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Certificates -->
+            <section
+              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
+            >
+              <h3
+                class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-200 pb-2"
+              >
+                Sertifikat
+              </h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-yellow-500 pl-4">
+                  <h4 class="text-lg font-semibold text-gray-800">
+                    Integrasi AI Dalam Pengembangan Aplikasi Backend Engineering
+                  </h4>
+                  <p class="text-yellow-600 font-medium">
+                    PT Ruang Raya Indonesia | 2024
+                  </p>
+                  <p class="text-gray-600 mt-1">
+                    Sertifikat profesional untuk arsitektur cloud computing
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+          <p class="mb-4">Tertarik untuk berkolaborasi? Mari kita diskusi!</p>
+          <div class="flex justify-center gap-6">
+            <button
+              onclick="window.open('mailto:email@example.com', '_blank')"
+              class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg transition-colors"
+            >
+              📧 Email Saya
+            </button>
+            <button
+              onclick="window.open('https://www.linkedin.com/in/irman-syah-a8b7b0242/', '_blank')"
+              class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg transition-colors"
+            >
+              💼 LinkedIn
+            </button>
+            <button
+              onclick="window.open('https://github.com/irmansyah38', '_blank')"
+              class="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-lg transition-colors"
+            >
+              💻 GitHub
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Animate skill bars on page load
+      window.addEventListener("load", function () {
+        const skillBars = document.querySelectorAll(".skill-bar");
+        skillBars.forEach((bar) => {
+          const width = bar.style.width;
+          bar.style.width = "0%";
+          setTimeout(() => {
+            bar.style.width = width;
+          }, 500);
+        });
+      });
+
+      // Smooth scroll for internal links
+      document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'98ba6c0e30ddf8e6',t:'MTc1OTk3NjY3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
