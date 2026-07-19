@@ -1,401 +1,715 @@
-<!DOCTYPE html>
-<html lang="id" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CV - Irmansyah</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        box-sizing: border-box;
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Irmansyah — IoT Engineer & Web Developer</title>
+  <meta name="description"
+    content="Irmansyah — IoT Engineer building embedded systems, sensor networks, and web tools." />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg-void: #0a1210;
+      --bg-panel: #0f1a17;
+      --bg-panel-2: #142420;
+      --line: #23342e;
+      --line-soft: #1a2723;
+      --text-hi: #eaf3ee;
+      --text-mid: #a9c2b9;
+      --text-low: #6f8981;
+      --amber: #f0b74f;
+      --cyan: #4fd6c4;
+      --red-led: #ff6b5e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-void);
+      color: var(--text-hi);
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      margin: 0;
+      background-image:
+        radial-gradient(circle at 15% 0%,
+          rgba(79, 214, 196, 0.06),
+          transparent 40%),
+        radial-gradient(circle at 85% 20%,
+          rgba(240, 183, 79, 0.05),
+          transparent 45%);
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    ::selection {
+      background: var(--amber);
+      color: #0a1210;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-void);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--line);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--cyan);
+    }
+
+    /* focus visibility */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* status LED */
+    .led {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 6px 1px var(--cyan);
+      animation: blink 2.2s ease-in-out infinite;
+      flex: none;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    /* nav underline trace */
+    .nav-link {
+      position: relative;
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-link:hover {
+      color: var(--text-hi);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 1px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* chip corner pins for panels */
+    .chip {
+      position: relative;
+      background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .chip::before,
+    .chip::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .pin {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--bg-void);
+      border: 1px solid var(--line);
+    }
+
+    /* trace divider between sections */
+    .trace-wrap {
+      position: relative;
+      height: 64px;
+      overflow: hidden;
+    }
+
+    .trace-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: repeating-linear-gradient(90deg,
+          var(--line) 0 6px,
+          transparent 6px 12px);
+    }
+
+    .trace-pulse {
+      position: absolute;
+      top: 50%;
+      left: -6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 8px 2px rgba(240, 183, 79, 0.7);
+      transform: translateY(-50%);
+      animation: travel 5s linear infinite;
+    }
+
+    @keyframes travel {
+      0% {
+        left: -2%;
       }
 
-      .animate-fade-in-up {
-        animation: fadeInUp 0.6s ease-out forwards;
+      100% {
+        left: 102%;
+      }
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #181008;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 0.65rem 1.2rem;
+      font-size: 0.85rem;
+      box-shadow: 0 0 0 1px rgba(240, 183, 79, 0.4) inset;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(240, 183, 79, 0.25);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.97);
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      color: var(--text-mid);
+      border-radius: 4px;
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--cyan);
+      color: var(--text-hi);
+    }
+
+    /* avatar - chip monogram, no external image dependency */
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
+      background:
+        repeating-linear-gradient(0deg,
+          rgba(79, 214, 196, 0.06) 0 1px,
+          transparent 1px 8px),
+        repeating-linear-gradient(90deg,
+          rgba(79, 214, 196, 0.06) 0 1px,
+          transparent 1px 8px),
+        linear-gradient(160deg, #16241f, #0c1512);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+      font-size: 2.6rem;
+      color: var(--amber);
+      box-shadow:
+        0 0 0 6px rgba(20, 36, 32, 0.6),
+        0 20px 40px -20px rgba(0, 0, 0, 0.7);
+    }
+
+    .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: var(--text-mid);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(234, 243, 238, 0.35);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+
+    .dot.on {
+      background: var(--amber);
+      width: 20px;
+      border-radius: 5px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .led,
+      .trace-pulse {
+        animation: none;
       }
 
-      .skill-bar {
-        transition: width 1s ease-in-out;
+      html {
+        scroll-behavior: auto;
       }
-    </style>
-  </head>
-  <body class="h-full bg-blue-50 font-sans">
-    <div class="min-h-full">
-      <!-- Header Section -->
-      <header class="bg-white shadow-lg">
-        <div class="max-w-6xl mx-auto px-6 py-8">
-          <div class="flex flex-col md:flex-row items-center gap-8">
-            <!-- Profile Photo -->
-            <div
-              class="w-32 h-32 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg overflow-hidden"
-            >
-              <img src="maman-01.jpeg" alt="" class="" />
+    }
+  </style>
+</head>
+
+<body class="text-[15px]">
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-[#0a1210]/85 border-b border-[var(--line)]">
+    <nav class="max-w-6xl mx-auto h-16 flex items-center justify-between px-5">
+      <a href="#top" class="flex items-center gap-2 mono font-semibold text-[var(--text-hi)] tracking-tight">
+        <span class="led"></span>
+        irmansyah<span class="text-[var(--amber)]">.</span>dev
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <button id="menuBtn"
+        class="md:hidden mono text-xs border border-[var(--line)] rounded px-3 py-1.5 text-[var(--text-mid)]"
+        aria-expanded="false" aria-controls="mobileMenu">
+        MENU
+      </button>
+    </nav>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-[var(--line)] px-5 py-3 flex flex-col gap-3">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="https://github.com/irmansyah38" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ABOUT / HERO -->
+    <section id="about" class="max-w-6xl mx-auto px-5 pt-16 pb-8 md:pt-24 md:pb-12">
+      <div class="chip p-6 md:p-10">
+        <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 items-start">
+          <div class="flex flex-col items-center text-center md:sticky md:top-24">
+            <!-- <div class="avatar" aria-hidden="true">IR</div> -->
+            <div class="w-[150px] h-[150px] mx-auto rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--bg-panel-2)]">
+              <img src="image/maman2.png" alt="" >
+            </div>
+            <h1 class="mono text-xl font-semibold mt-5">Irmansyah</h1>
+            <p class="text-[var(--text-mid)] text-sm mt-1">
+              IoT Engineer &amp; Web Developer
+            </p>
+
+            <div class="flex gap-2 mt-4">
+              <a href="https://github.com/irmansyah38" target="_blank" rel="noopener noreferrer"
+                class="btn-ghost mono">GitHub</a>
+              <a href="https://www.linkedin.com/in/irman-syah-a8b7b0242/" target="_blank" rel="noopener noreferrer"
+                class="btn-ghost mono">LinkedIn</a>
+              <a href="mailto:irmansya146@gmail.com" target="_blank" rel="noopener noreferrer"
+                class="btn-ghost mono">Email</a>
+            </div>
+          </div>
+
+          <div>
+            <span class="eyebrow">// system.about</span>
+            <h2 class="text-2xl md:text-3xl font-semibold mt-2 mb-4">
+              About me
+            </h2>
+
+            <p class="text-[var(--text-mid)] leading-relaxed">
+              A motivated Computer Engineering student at IPB University's
+              School of Vocational Sciences, a fresh graduate with a GPA of
+              3.44. Possesses experience in IoT, webite and networking.
+              Seeking an IT internship opportunity to further enhance
+              practical skills, contribute to real-world projects, and expand
+              knowledge in the field of computer engineering.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-4 mt-8">
+              <div class="border border-[var(--line)] rounded-md p-4 bg-[var(--bg-panel-2)]/40">
+                <h3 class="eyebrow mb-2">Focus areas</h3>
+                <ul class="space-y-1.5 text-sm text-[var(--text-mid)]">
+                  <li>· Internet of Things</li>
+                  <li>· Embedded Systems</li>
+                  <li>· Web Development</li>
+                  <li>· Networking</li>
+                </ul>
+              </div>
+              <div class="border border-[var(--line)] rounded-md p-4 bg-[var(--bg-panel-2)]/40">
+                <h3 class="eyebrow mb-2">Background</h3>
+                <ul class="space-y-1.5 text-sm text-[var(--text-mid)]">
+                  <li>· Bachelor of Computer Engineering</li>
+                 
+                </ul>
+              </div>
             </div>
 
-            <!-- Personal Info -->
-            <div class="text-center md:text-left flex-1">
-              <h1 class="text-4xl font-bold text-gray-800 mb-2">Irmansyah</h1>
-              <h2 class="text-xl text-indigo-600 mb-4">
-                IoT Engginer & Web Developer
-              </h2>
-              <div
-                class="flex flex-wrap justify-center md:justify-start gap-4 text-gray-600"
-              >
-                <div class="flex items-center gap-2">
-                  <span>📧</span>
-                  <span>irmansya146@gmail.com</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span>📱</span>
-                  <span>+62 898-9540-299</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span>📍</span>
-                  <span>Bogor, Indonesia</span>
-                </div>
-              </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="tag">ESP32</span>
+              <span class="tag">Arduino</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
             </div>
+
+            <a href="resume-irmansyah.pdf" class="inline-block mt-8">
+              <button class="btn-primary mono">↓ Download CV</button>
+            </a>
           </div>
         </div>
-      </header>
+      </div>
+    </section>
 
-      <!-- Main Content -->
-      <main class="max-w-6xl mx-auto px-6 py-8">
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Left Column -->
-          <div class="md:col-span-1 space-y-6">
-            <!-- About Me -->
-            <section
-              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
-            >
-              <h3
-                class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-200 pb-2"
-              >
-                Tentang Saya
-              </h3>
-              <p class="text-gray-600 leading-relaxed">
-                Fresh graduate dengan ketertarikan di bidang Internet of Things
-                (IoT) dan pengembangan web. Memiliki kemampuan dalam pemrograman
-                mikrokontroler, integrasi sensor, serta pengembangan web
-                berbasis API. Terbiasa bekerja dengan teknologi terkini dan
-                berorientasi pada pengembangan sistem yang efisien dan
-                terhubung.
-              </p>
-            </section>
-
-            <!-- Skills -->
-            <section
-              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
-            >
-              <h3
-                class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-200 pb-2"
-              >
-                Keahlian
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-gray-700">C++</span>
-                    <span class="text-sm text-gray-500">85%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="skill-bar bg-indigo-600 h-2 rounded-full"
-                      style="width: 85%"
-                    ></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-gray-700">PHP</span>
-                    <span class="text-sm text-gray-500">80%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="skill-bar bg-indigo-600 h-2 rounded-full"
-                      style="width: 80%"
-                    ></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-gray-700"
-                      >JavaScript</span
-                    >
-                    <span class="text-sm text-gray-500">80%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="skill-bar bg-indigo-600 h-2 rounded-full"
-                      style="width: 80%"
-                    ></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-gray-700"
-                      >Python</span
-                    >
-                    <span class="text-sm text-gray-500">70%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="skill-bar bg-indigo-600 h-2 rounded-full"
-                      style="width: 70%"
-                    ></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-gray-700"
-                      >Bootstrap</span
-                    >
-                    <span class="text-sm text-gray-500">80%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="skill-bar bg-indigo-600 h-2 rounded-full"
-                      style="width: 80%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- Languages -->
-            <section
-              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
-            >
-              <h3
-                class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-200 pb-2"
-              >
-                Bahasa
-              </h3>
-              <div class="space-y-3">
-                <div class="flex justify-between">
-                  <span class="text-gray-700">Bahasa Indonesia</span>
-                  <span class="text-indigo-600 font-medium">Native</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-gray-700">English</span>
-                  <span class="text-indigo-600 font-medium">Fluent</span>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <!-- Right Column -->
-          <div class="md:col-span-2 space-y-6">
-            <!-- Experience -->
-            <section
-              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
-            >
-              <h3
-                class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-200 pb-2"
-              >
-                Pengalaman Proyek
-              </h3>
-              <div class="space-y-6">
-                <div class="border-l-4 border-indigo-500 pl-4">
-                  <h4 class="text-lg font-semibold text-gray-800">
-                    Sistem Keamanan Rumah Menggunakan Notifikasi Telegram dan
-                    SMS | 2025
-                  </h4>
-                  <p class="mt-2 text-gray-600 space-y-1">
-                    Merancang dan mengembangkan, sistem keamanan rumah berbasis
-                    IoT menggunakan ESP32-CAM, sensor RCWL, sensor PIR, dan
-                    modul SIM800L. Sistem ini mampu mendeteksi gerakan secara
-                    otomatis, mengambil gambar melalui kamera, serta mengirimkan
-                    notifikasi ke Telegram dan SMS secara real-time. Proyek ini
-                    bertujuan meningkatkan keamanan rumah dengan solusi yang
-                    efisien, terjangkau, dan mudah diimplementasikan.
-                  </p>
-                </div>
-                <div class="border-l-4 border-indigo-500 pl-4">
-                  <h4 class="text-lg font-semibold text-gray-800">
-                    Hy-Scape: Smart Aquacapes dengan Kontrol Suhu, Pengatur pH,
-                    dan Pakan Otomatis | 2024
-                  </h4>
-                  <ul class="mt-2 text-gray-600 space-y-1">
-                    <li>• Mengembangkan program utama sistem.</li>
-                    <li>
-                      • Merancang website untuk input Chat ID dan Token Telegram
-                      guna mendukung notifikasi otomatis.
-                    </li>
-                  </ul>
-                </div>
-                <div class="border-l-4 border-indigo-500 pl-4">
-                  <h4 class="text-lg font-semibold text-gray-800">
-                    ETREKPASS : Curug Cikoneng Online Marketplace and Ticket
-                    Scanning System | 2024
-                  </h4>
-                  <ul class="mt-2 text-gray-600 space-y-1">
-                    <li>
-                      • Membuat website untuk mendukung proses pembelian serta
-                    </li>
-                    <li>
-                      • menyediakan API untuk integrasi dengan alat pemindai
-                    </li>
-                    <li>
-                      • Mengintegrasikan API yang telah dibuat dengan perangkat
-                      pemindai yang dikembangkan.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <!-- Education -->
-            <section
-              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
-            >
-              <h3
-                class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-200 pb-2"
-              >
-                Pendidikan
-              </h3>
-              <div class="space-y-4">
-                <div class="border-l-4 border-green-500 pl-4">
-                  <h4 class="text-lg font-semibold text-gray-800">
-                    D4 Teknik Rekayasa Komputer
-                  </h4>
-                  <p class="text-green-600 font-medium">
-                    Institut Pertanian Bogor | 2021 - 2025
-                  </p>
-                  <p class="text-gray-600 mt-1">IPK: 3.44/4.00</p>
-                </div>
-              </div>
-            </section>
-
-            <!-- Certificates -->
-            <section
-              class="bg-white rounded-lg shadow-md p-6 animate-fade-in-up"
-            >
-              <h3
-                class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-200 pb-2"
-              >
-                Sertifikat
-              </h3>
-              <div class="space-y-4">
-                <div class="border-l-4 border-yellow-500 pl-4">
-                  <h4 class="text-lg font-semibold text-gray-800">
-                    Integrasi AI Dalam Pengembangan Aplikasi Backend Engineering
-                  </h4>
-                  <p class="text-yellow-600 font-medium">
-                    PT Ruang Raya Indonesia | 2024
-                  </p>
-                  <p class="text-gray-600 mt-1">
-                    Sertifikat profesional untuk arsitektur cloud computing
-                  </p>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-
-      <!-- Footer -->
-      <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-          <p class="mb-4">Tertarik untuk berkolaborasi? Mari kita diskusi!</p>
-          <div class="flex justify-center gap-6">
-            <button
-              onclick="window.open('mailto:email@example.com', '_blank')"
-              class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg transition-colors"
-            >
-              📧 Email Saya
-            </button>
-            <button
-              onclick="window.open('https://www.linkedin.com/in/irman-syah-a8b7b0242/', '_blank')"
-              class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg transition-colors"
-            >
-              💼 LinkedIn
-            </button>
-            <button
-              onclick="window.open('https://github.com/irmansyah38', '_blank')"
-              class="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-lg transition-colors"
-            >
-              💻 GitHub
-            </button>
-          </div>
-        </div>
-      </footer>
+    <div class="trace-wrap max-w-6xl mx-auto px-5" aria-hidden="true">
+      <div class="trace-line"></div>
+      <div class="trace-pulse"></div>
     </div>
 
-    <script>
-      // Animate skill bars on page load
-      window.addEventListener("load", function () {
-        const skillBars = document.querySelectorAll(".skill-bar");
-        skillBars.forEach((bar) => {
-          const width = bar.style.width;
-          bar.style.width = "0%";
-          setTimeout(() => {
-            bar.style.width = width;
-          }, 500);
-        });
-      });
+    <!-- PROJECTS -->
+    <section id="projects" class="max-w-6xl mx-auto px-5 py-8 md:py-12">
+      <span class="eyebrow">// system.projects</span>
+      <h2 class="text-2xl md:text-3xl font-semibold mt-2 mb-8">
+        Selected work
+      </h2>
 
-      // Smooth scroll for internal links
-      document.addEventListener("DOMContentLoaded", function () {
-        const links = document.querySelectorAll('a[href^="#"]');
-        links.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-              target.scrollIntoView({
-                behavior: "smooth",
-              });
-            }
-          });
+      <div class="space-y-10">
+        <!-- Project 1 -->
+        <article class="chip overflow-hidden">
+          <div class="flex flex-col lg:flex-row">
+            <div class="relative w-full lg:w-3/5 h-72 md:h-[420px] overflow-hidden">
+              <div class="slide slide-1 active">
+                <img src="image/project-1/foto_project_1_1.jpg" alt="Project 1 screenshot 1"
+                  class="w-full h-full object-cover" />
+              </div>
+              <div class="slide slide-1">
+                <img src="image/project-1/foto_project_1_2.jpg" alt="Project 1 screenshot 2"
+                  class="w-full h-full object-cover" />
+              </div>
+              <div class="slide slide-1">
+                <img src="image/project-1/foto_project_1_3.jpg" alt="Project 1 screenshot 3"
+                  class="w-full h-full object-cover" />
+              </div>
+            
+              <button id="prev-1" aria-label="Previous slide"
+                class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full z-20">
+                ❮
+              </button>
+              <button id="next-1" aria-label="Next slide"
+                class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full z-20">
+                ❯
+              </button>
+              <div id="dots-1" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
+            </div>
+            <div class="w-full lg:w-2/5 p-6 md:p-8 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="led"></span><span class="mono text-xs text-[var(--text-low)]">MODULE 01</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">
+                ESP32-CAM Smart Home Security System
+              </h3>
+              <p class="text-[var(--text-mid)] text-sm leading-relaxed">
+                Designed and developed a smart home security system using
+                ESP32-CAM, PIR HC-SR501, and RCWL-0516 sensors to detect human
+                presence and motion. Integrated the system with the Telegram
+                Bot API to send real-time security alerts, automatically
+                capture images when motion was detected, and transmit the
+                captured photos to users. Focused on reliable sensor
+                integration, embedded programming, and real-time IoT
+                communication to provide remote home monitoring.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="tag">ESP32</span><span class="tag">RCWL-0516</span><span class="tag">IR HC-SR501</span><span class="tag">Telegram</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="chip overflow-hidden">
+          <div class="flex flex-col lg:flex-row-reverse">
+            <div class="relative w-full lg:w-3/5 h-72 md:h-[420px] overflow-hidden">
+              <div class="slide slide-2 active">
+                <img src="image/project-2/1.png" alt="Project 2 screenshot 1"
+                  class="w-full h-full object-cover" />
+              </div>
+              <div class="slide slide-2">
+                <img src="image/project-2/2.png" alt="Project 2 screenshot 2"
+                  class="w-full h-full object-cover" />
+              </div>
+              <div class="slide slide-2">
+                <img src="image/project-2/3.png" alt="Project 2 screenshot 3"
+                  class="w-full h-full object-cover" />
+              </div>
+              
+              <button id="prev-2" aria-label="Previous slide"
+                class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full z-20">
+                ❮
+              </button>
+              <button id="next-2" aria-label="Next slide"
+                class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full z-20">
+                ❯
+              </button>
+              <div id="dots-2" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
+            </div>
+            <div class="w-full lg:w-2/5 p-6 md:p-8 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="led"></span><span class="mono text-xs text-[var(--text-low)]">MODULE 02</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">
+                Smart Aquascape Monitoring and Control System
+              </h3>
+              <p class="text-[var(--text-mid)] text-sm leading-relaxed">
+                Designed and developed an IoT-based smart aquascape system
+                consisting of embedded software and a web application. The
+                system enables real-time monitoring and control of key
+                aquarium parameters, including water temperature, pH levels,
+                and automated fish feeding. Implemented seamless communication
+                between the hardware and web platform to ensure reliable data
+                transmission, remote monitoring, and efficient aquascape
+                management.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="tag">ESP 32</span><span class="tag">Arduino</span><span class="tag">Telegram</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="chip overflow-hidden">
+          <div class="flex flex-col lg:flex-row">
+            <div class="relative w-full lg:w-3/5 h-72 md:h-[420px] overflow-hidden">
+              <div class="slide slide-3 active">
+                <img src="image/project-3/foto_project_3_1.jpg" alt="Project 3 screenshot 1"
+                  class="w-full h-full object-cover" />
+              </div>
+              <div class="slide slide-3">
+                <img src="image/project-3/foto_project_3_2.jpg" alt="Project 3 screenshot 2"
+                  class="w-full h-full object-cover" />
+              </div>
+              <div class="slide slide-3">
+                <img src="image/project-3/foto_project_3_3.png" alt="Project 3 screenshot 3"
+                  class="w-full h-full object-cover" />
+              </div>
+              <div class="slide slide-3">
+                <img src="image/project-3/foto_project_3_4.png" alt="Project 3 screenshot 4"
+                  class="w-full h-full object-cover" />
+              </div>
+              <button id="prev-3" aria-label="Previous slide"
+                class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full z-20">
+                ❮
+              </button>
+              <button id="next-3" aria-label="Next slide"
+                class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full z-20">
+                ❯
+              </button>
+              <div id="dots-3" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
+            </div>
+            <div class="w-full lg:w-2/5 p-6 md:p-8 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="led"></span><span class="mono text-xs text-[var(--text-low)]">MODULE 03</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">
+                Web-Based Ticket Management System with ESP32-CAM Integration
+              </h3>
+              <p class="text-[var(--text-mid)] text-sm leading-relaxed">
+                Web-Based Ticket Management System with ESP32-CAM Integration
+                Designed and developed a web-based ticket management system
+                integrated with an ESP32-CAM ticket scanning device.
+                Implemented real-time communication between the scanning
+                hardware and the web application to validate tickets
+                efficiently. Developed features for online ticket purchasing,
+                ticket verification, and a management dashboard that enables
+                owners to monitor ticket sales, transactions, and visitor data
+                through a centralized interface.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="tag">ESP32-CAM</span><span class="tag">Laravel</span><span class="tag">Bootstrap</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="trace-wrap max-w-6xl mx-auto px-5" aria-hidden="true">
+      <div class="trace-line"></div>
+      <div class="trace-pulse" style="animation-delay: 2.4s"></div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-6xl mx-auto px-5 py-8 md:py-12">
+      <div class="chip p-6 md:p-10 text-center">
+        <span class="eyebrow">// system.contact</span>
+        <h2 class="text-2xl md:text-3xl font-semibold mt-2 mb-3">
+          Let's connect
+        </h2>
+        <p class="text-[var(--text-mid)] max-w-xl mx-auto mb-6 text-sm leading-relaxed">
+          Open to conversations about IoT, embedded systems, and web projects.
+          Reach out on LinkedIn or by email.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="https://www.linkedin.com/in/irman-syah-a8b7b0242/" class="btn-ghost mono">LinkedIn</a>
+          <a href="mailto:irmansya146@gmail.com" class="btn-ghost mono">Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-[var(--line)] py-8 mt-4">
+    <p class="text-center text-[var(--text-low)] mono text-xs">
+      © 2026 Irmansyah
+    </p>
+  </footer>
+
+  <script>
+    // mobile menu toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.toggle("hidden");
+      menuBtn.setAttribute("aria-expanded", String(!isHidden));
+    });
+    mobileMenu.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }),
+    );
+
+    function slideShow(slideSelector, dotsId, prevId, nextId) {
+      const slides = document.querySelectorAll(slideSelector);
+      const dotsContainer = document.getElementById(dotsId);
+      if (!slides.length || !dotsContainer) return;
+
+      let current = 0;
+      let autoSlide;
+
+      dotsContainer.innerHTML = "";
+      slides.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.className = "dot" + (index === 0 ? " on" : "");
+        dot.setAttribute("aria-label", "Go to slide " + (index + 1));
+        dot.addEventListener("click", () => {
+          showSlide(index);
+          resetTimer();
         });
+        dotsContainer.appendChild(dot);
       });
-    </script>
-    <script>
-      (function () {
-        function c() {
-          var b = a.contentDocument || a.contentWindow.document;
-          if (b) {
-            var d = b.createElement("script");
-            d.innerHTML =
-              "window.__CF$cv$params={r:'98ba6c0e30ddf8e6',t:'MTc1OTk3NjY3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
-            b.getElementsByTagName("head")[0].appendChild(d);
-          }
-        }
-        if (document.body) {
-          var a = document.createElement("iframe");
-          a.height = 1;
-          a.width = 1;
-          a.style.position = "absolute";
-          a.style.top = 0;
-          a.style.left = 0;
-          a.style.border = "none";
-          a.style.visibility = "hidden";
-          document.body.appendChild(a);
-          if ("loading" !== document.readyState) c();
-          else if (window.addEventListener)
-            document.addEventListener("DOMContentLoaded", c);
-          else {
-            var e = document.onreadystatechange || function () {};
-            document.onreadystatechange = function (b) {
-              e(b);
-              "loading" !== document.readyState &&
-                ((document.onreadystatechange = e), c());
-            };
-          }
-        }
-      })();
-    </script>
-  </body>
+      const dots = dotsContainer.querySelectorAll("button");
+
+      function showSlide(index) {
+        slides.forEach((s) => s.classList.remove("active"));
+        dots.forEach((d) => d.classList.remove("on"));
+        slides[index].classList.add("active");
+        dots[index].classList.add("on");
+        current = index;
+      }
+
+      const nextBtn = document.getElementById(nextId);
+      const prevBtn = document.getElementById(prevId);
+      if (nextBtn)
+        nextBtn.onclick = () => {
+          showSlide((current + 1) % slides.length);
+          resetTimer();
+        };
+      if (prevBtn)
+        prevBtn.onclick = () => {
+          showSlide((current - 1 + slides.length) % slides.length);
+          resetTimer();
+        };
+
+      function startTimer() {
+        autoSlide = setInterval(
+          () => showSlide((current + 1) % slides.length),
+          4000,
+        );
+      }
+      function resetTimer() {
+        clearInterval(autoSlide);
+        startTimer();
+      }
+
+      showSlide(0);
+      startTimer();
+    }
+
+    slideShow(".slide-1", "dots-1", "prev-1", "next-1");
+    slideShow(".slide-2", "dots-2", "prev-2", "next-2");
+    slideShow(".slide-3", "dots-3", "prev-3", "next-3");
+  </script>
+</body>
+
 </html>
